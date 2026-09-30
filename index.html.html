@@ -1,0 +1,4301 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Nikhil Trivedi | Digital Marketer • Web Developer • Entrepreneur</title>
+
+<meta
+ name="description"
+ content="Nikhil Trivedi — Digital Marketer, Front-End Web Developer, Business Growth Strategist and Ecommerce Entrepreneur."
+/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+
+    /* =====================================================
+       ROOT
+    ====================================================== */
+
+    :root{
+      --bg:#f7f9fc;
+      --white:#ffffff;
+      --text:#111827;
+      --text-soft:#263043;
+      --muted:#697386;
+
+      --purple:#6658f5;
+      --purple-light:#8d7dff;
+
+      --teal:#08b9a4;
+      --blue:#5d7cff;
+
+      --border:rgba(17,24,39,.08);
+
+      --gradient:
+        linear-gradient(
+          120deg,
+          #6658f5 0%,
+          #8271ff 45%,
+          #08b9a4 100%
+        );
+
+      --soft-gradient:
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #f2f3ff
+        );
+
+      --shadow:
+        0 25px 80px rgba(50,55,100,.10);
+
+      --shadow-soft:
+        0 15px 50px rgba(50,55,100,.07);
+
+      --radius:28px;
+    }
+
+
+    /* =====================================================
+       RESET
+    ====================================================== */
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:"DM Sans",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    body.loading{
+      overflow:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    button{
+      font-family:inherit;
+    }
+
+    img{
+      max-width:100%;
+    }
+
+    ::selection{
+      background:var(--purple);
+      color:#fff;
+    }
+
+
+    /* =====================================================
+       PAGE LOADER
+    ====================================================== */
+
+    .loader{
+      position:fixed;
+      inset:0;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      background:#fff;
+
+      z-index:99999;
+
+      transition:
+        opacity .7s ease,
+        visibility .7s ease;
+    }
+
+    .loader.hide{
+      opacity:0;
+      visibility:hidden;
+    }
+
+    .loader-inner{
+      text-align:center;
+    }
+
+    .loader-name{
+      font-family:"Manrope",sans-serif;
+      font-size:32px;
+      font-weight:800;
+      letter-spacing:-1.5px;
+    }
+
+    .loader-name span{
+      color:var(--purple);
+    }
+
+    .loader-line{
+      width:160px;
+      height:3px;
+
+      margin:18px auto 0;
+
+      overflow:hidden;
+
+      background:#edf0f5;
+      border-radius:999px;
+    }
+
+    .loader-line::after{
+      content:"";
+
+      display:block;
+
+      width:50%;
+      height:100%;
+
+      background:var(--gradient);
+
+      border-radius:999px;
+
+      animation:loaderMove 1.2s ease infinite;
+    }
+
+    @keyframes loaderMove{
+      0%{
+        transform:translateX(-100%);
+      }
+
+      100%{
+        transform:translateX(300%);
+      }
+    }
+
+
+    /* =====================================================
+       SCROLL PROGRESS
+    ====================================================== */
+
+    .scroll-progress{
+      position:fixed;
+
+      top:0;
+      left:0;
+
+      width:0;
+      height:3px;
+
+      background:var(--gradient);
+
+      z-index:9999;
+    }
+
+
+    /* =====================================================
+       BACKGROUND
+    ====================================================== */
+
+    .background-orb{
+      position:fixed;
+
+      width:450px;
+      height:450px;
+
+      border-radius:50%;
+
+      pointer-events:none;
+
+      filter:blur(80px);
+
+      opacity:.35;
+
+      z-index:-2;
+    }
+
+    .orb-one{
+      top:-180px;
+      left:-180px;
+
+      background:rgba(102,88,245,.13);
+    }
+
+    .orb-two{
+      right:-180px;
+      top:30%;
+
+      background:rgba(8,185,164,.10);
+    }
+
+    .orb-three{
+      left:20%;
+      bottom:-250px;
+
+      background:rgba(93,124,255,.08);
+    }
+
+
+    /* =====================================================
+       CURSOR GLOW
+    ====================================================== */
+
+    .cursor-glow{
+      position:fixed;
+
+      width:300px;
+      height:300px;
+
+      border-radius:50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(102,88,245,.08),
+          transparent 65%
+        );
+
+      pointer-events:none;
+
+      transform:translate(-50%,-50%);
+
+      z-index:-1;
+    }
+
+
+    /* =====================================================
+       NAVBAR
+    ====================================================== */
+
+    .navbar{
+      position:fixed;
+
+      top:18px;
+      left:50%;
+
+      transform:translateX(-50%);
+
+      width:min(1180px,calc(100% - 32px));
+
+      padding:13px 18px;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+
+      background:rgba(255,255,255,.78);
+
+      backdrop-filter:blur(22px);
+      -webkit-backdrop-filter:blur(22px);
+
+      border:1px solid rgba(255,255,255,.9);
+
+      border-radius:18px;
+
+      box-shadow:
+        0 10px 40px rgba(30,35,80,.06);
+
+      z-index:5000;
+
+      transition:.3s ease;
+    }
+
+    .navbar.scrolled{
+      box-shadow:
+        0 15px 50px rgba(30,35,80,.12);
+    }
+
+    .logo{
+      font-family:"Manrope",sans-serif;
+
+      font-size:22px;
+
+      font-weight:800;
+
+      letter-spacing:-1px;
+    }
+
+    .logo span{
+      color:var(--purple);
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:30px;
+    }
+
+    .nav-links a{
+      position:relative;
+
+      font-size:13px;
+      font-weight:700;
+
+      color:#596273;
+
+      transition:.25s ease;
+    }
+
+    .nav-links a:hover{
+      color:var(--purple);
+    }
+
+    .nav-links a::after{
+      content:"";
+
+      position:absolute;
+
+      left:0;
+      bottom:-6px;
+
+      width:0;
+      height:2px;
+
+      background:var(--purple);
+
+      transition:.25s ease;
+    }
+
+    .nav-links a:hover::after{
+      width:100%;
+    }
+
+    .nav-cta{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      padding:10px 18px;
+
+      border-radius:12px;
+
+      background:var(--text);
+
+      color:white;
+
+      font-size:13px;
+      font-weight:700;
+
+      transition:.3s ease;
+    }
+
+    .nav-cta:hover{
+      background:var(--purple);
+
+      transform:translateY(-2px);
+    }
+
+    .mobile-menu{
+      display:none;
+
+      width:42px;
+      height:42px;
+
+      border:none;
+
+      border-radius:12px;
+
+      background:#f1f3f8;
+
+      cursor:pointer;
+    }
+
+    .mobile-menu span{
+      display:block;
+
+      width:20px;
+      height:2px;
+
+      margin:4px auto;
+
+      background:var(--text);
+
+      border-radius:3px;
+    }
+
+
+    /* =====================================================
+       GENERAL
+    ====================================================== */
+
+    .container{
+      width:min(1180px,calc(100% - 40px));
+
+      margin:auto;
+    }
+
+    section{
+      padding:115px 0;
+    }
+
+    .section-label{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+
+      padding:8px 12px;
+
+      background:#fff;
+
+      border:1px solid var(--border);
+
+      border-radius:999px;
+
+      color:var(--purple);
+
+      font-size:10px;
+      font-weight:800;
+
+      letter-spacing:1.2px;
+
+      text-transform:uppercase;
+    }
+
+    .section-title{
+      margin-top:18px;
+
+      font-family:"Manrope",sans-serif;
+
+      font-size:clamp(38px,5vw,62px);
+
+      line-height:1.03;
+
+      letter-spacing:-3px;
+
+      font-weight:800;
+    }
+
+    .section-subtitle{
+      max-width:650px;
+
+      margin-top:18px;
+
+      color:var(--muted);
+
+      font-size:16px;
+
+      line-height:1.8;
+    }
+
+
+    /* =====================================================
+       REVEAL
+    ====================================================== */
+
+    .reveal{
+      opacity:0;
+
+      transform:translateY(35px);
+
+      transition:
+        opacity .8s ease,
+        transform .8s ease;
+    }
+
+    .reveal.visible{
+      opacity:1;
+
+      transform:translateY(0);
+    }
+
+
+    /* =====================================================
+       HERO
+    ====================================================== */
+
+    .hero{
+      min-height:100vh;
+
+      padding-top:155px;
+      padding-bottom:110px;
+
+      display:flex;
+      align-items:center;
+    }
+
+    .hero-grid{
+      display:grid;
+
+      grid-template-columns:1.05fr .95fr;
+
+      gap:65px;
+
+      align-items:center;
+    }
+
+    .hero-label{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+
+      padding:9px 14px;
+
+      background:#fff;
+
+      border:1px solid var(--border);
+
+      border-radius:999px;
+
+      color:#5f6979;
+
+      font-size:10px;
+      font-weight:800;
+
+      letter-spacing:1.1px;
+    }
+
+    .status-dot{
+      width:7px;
+      height:7px;
+
+      background:var(--teal);
+
+      border-radius:50%;
+
+      box-shadow:
+        0 0 0 5px rgba(8,185,164,.09);
+
+      animation:pulse 2s infinite;
+    }
+
+    @keyframes pulse{
+
+      0%,100%{
+        box-shadow:
+          0 0 0 4px rgba(8,185,164,.08);
+      }
+
+      50%{
+        box-shadow:
+          0 0 0 9px rgba(8,185,164,.02);
+      }
+
+    }
+
+    .hero h1{
+      margin-top:26px;
+
+      font-family:"Manrope",sans-serif;
+
+      font-size:clamp(53px,7vw,91px);
+
+      line-height:.96;
+
+      letter-spacing:-5.5px;
+
+      font-weight:800;
+    }
+
+    .hero h1 .gradient{
+      background:var(--gradient);
+
+      -webkit-background-clip:text;
+      background-clip:text;
+
+      color:transparent;
+    }
+
+    .hero h1 .outline{
+      color:transparent;
+
+      -webkit-text-stroke:1.5px var(--text);
+    }
+
+    .hero-description{
+      max-width:670px;
+
+      margin-top:28px;
+
+      color:var(--muted);
+
+      font-size:17px;
+
+      line-height:1.85;
+    }
+
+    .hero-description strong{
+      color:var(--text);
+    }
+
+    .hero-buttons{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+
+      margin-top:32px;
+    }
+
+    .btn{
+      min-height:52px;
+
+      padding:0 21px;
+
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+
+      border-radius:14px;
+
+      font-size:13px;
+      font-weight:800;
+
+      transition:.3s ease;
+    }
+
+    .btn-primary{
+      color:#fff;
+
+      background:var(--text);
+
+      box-shadow:
+        0 15px 35px rgba(17,24,39,.14);
+    }
+
+    .btn-primary:hover{
+      background:var(--purple);
+
+      transform:translateY(-3px);
+
+      box-shadow:
+        0 20px 45px rgba(102,88,245,.20);
+    }
+
+    .btn-secondary{
+      color:var(--text);
+
+      background:#fff;
+
+      border:1px solid var(--border);
+    }
+
+    .btn-secondary:hover{
+      color:var(--purple);
+
+      border-color:rgba(102,88,245,.25);
+
+      transform:translateY(-3px);
+    }
+
+
+    /* =====================================================
+       PREMIUM HERO VISUAL
+    ====================================================== */
+
+    .hero-visual{
+      position:relative;
+
+      min-height:650px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      isolation:isolate;
+    }
+
+    .hero-visual::before{
+      content:"";
+
+      position:absolute;
+
+      width:540px;
+      height:540px;
+
+      border-radius:50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(102,88,245,.17) 0%,
+          rgba(102,88,245,.07) 38%,
+          transparent 70%
+        );
+
+      filter:blur(12px);
+
+      z-index:-4;
+
+      animation:heroGlow 7s ease-in-out infinite;
+    }
+
+    @keyframes heroGlow{
+
+      0%,100%{
+        transform:scale(1) translateY(0);
+      }
+
+      50%{
+        transform:scale(1.06) translateY(-12px);
+      }
+
+    }
+
+    .hero-visual::after{
+      content:"";
+
+      position:absolute;
+
+      width:500px;
+      height:500px;
+
+      border-radius:50%;
+
+      border:1px solid rgba(102,88,245,.12);
+
+      z-index:-3;
+
+      animation:ringRotate 20s linear infinite;
+    }
+
+    @keyframes ringRotate{
+
+      from{
+        transform:rotate(0deg);
+      }
+
+      to{
+        transform:rotate(360deg);
+      }
+
+    }
+
+
+    /* =====================================================
+       HERO ORB
+    ====================================================== */
+
+    .hero-orb{
+      position:absolute;
+
+      width:390px;
+      height:390px;
+
+      border-radius:50%;
+
+      background:
+        radial-gradient(
+          circle at 30% 25%,
+          rgba(141,125,255,.24),
+          transparent 52%
+        ),
+        radial-gradient(
+          circle at 72% 72%,
+          rgba(8,185,164,.14),
+          transparent 55%
+        );
+
+      filter:blur(5px);
+
+      animation:orbFloat 7s ease-in-out infinite;
+
+      z-index:-1;
+    }
+
+    @keyframes orbFloat{
+
+      0%,100%{
+        transform:translateY(0) rotate(0);
+      }
+
+      50%{
+        transform:translateY(-14px) rotate(7deg);
+      }
+
+    }
+
+
+    /* =====================================================
+       PREMIUM HERO PHOTO
+    ====================================================== */
+
+    .hero-photo{
+      position:relative;
+
+      width:min(430px,78vw);
+
+      aspect-ratio:4 / 5;
+
+      padding:8px;
+
+      overflow:visible;
+
+      border-radius:34px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.98),
+          rgba(255,255,255,.72)
+        );
+
+      border:1px solid rgba(255,255,255,.95);
+
+      box-shadow:
+        0 40px 100px rgba(35,40,90,.18),
+        0 15px 35px rgba(102,88,245,.10);
+
+      z-index:5;
+
+      transform-style:preserve-3d;
+
+      transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+    }
+
+    /* Gradient border */
+
+    .hero-photo::before{
+      content:"";
+
+      position:absolute;
+
+      inset:-2px;
+
+      border-radius:36px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(102,88,245,.70),
+          transparent 35%,
+          transparent 65%,
+          rgba(8,185,164,.55)
+        );
+
+      z-index:-1;
+
+      opacity:.78;
+
+      pointer-events:none;
+    }
+
+    /* Inner frame */
+
+    .hero-photo::after{
+      content:"";
+
+      position:absolute;
+
+      inset:8px;
+
+      border-radius:28px;
+
+      border:1px solid rgba(255,255,255,.78);
+
+      pointer-events:none;
+
+      z-index:3;
+    }
+
+    .hero-photo img{
+      width:100%;
+      height:100%;
+
+      display:block;
+
+      object-fit:cover;
+
+      object-position:center top;
+
+      border-radius:27px;
+
+      background:#f1f3f9;
+
+      transition:
+        transform .5s ease,
+        filter .5s ease;
+    }
+
+    .hero-photo:hover img{
+      transform:scale(1.025);
+
+      filter:saturate(1.04);
+    }
+
+
+    /* =====================================================
+       NAME PLATE
+    ====================================================== */
+
+    .hero-name-plate{
+      position:absolute;
+
+      left:50%;
+
+      bottom:-62px;
+
+      transform:translateX(-50%);
+
+      width:calc(100% - 55px);
+
+      padding:18px 22px 16px;
+
+      text-align:center;
+
+      background:rgba(255, 255, 255, 0.007);
+
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+
+      border:1px solid rgba(255,255,255,.96);
+
+      border-radius:18px;
+
+      box-shadow:
+        0 18px 50px rgba(35,40,90,.13);
+
+      z-index:20;
+    }
+
+    .hero-name{
+      font-family:"Manrope",sans-serif;
+
+      font-size:clamp(18px,2vw,25px);
+
+      line-height:1;
+
+      font-weight:10;
+
+      letter-spacing:3px;
+
+      color:#272727;
+
+      white-space:nowrap;
+    }
+
+    .hero-role{
+      margin-top:8px;
+
+      color:#737d8e;
+
+      font-size:9px;
+
+      line-height:1.4;
+
+      font-weight:800;
+
+      letter-spacing:1.3px;
+
+      text-transform:uppercase;
+    }
+
+    .hero-name-accent{
+      width:40px;
+      height:3px;
+
+      margin:11px auto 0;
+
+      border-radius:999px;
+
+      background:var(--gradient);
+    }
+
+
+    /* =====================================================
+       FLOATING INFO CARDS
+    ====================================================== */
+
+    .float-card{
+      position:absolute;
+
+      z-index:30;
+
+      min-width:158px;
+
+      padding:15px 17px;
+
+      background:rgba(255,255,255,.88);
+
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+
+      border:1px solid rgba(255,255,255,.95);
+
+      border-radius:17px;
+
+      box-shadow:
+        0 20px 55px rgba(35,40,90,.13);
+
+      animation:floatCard 5s ease-in-out infinite;
+
+      transition:
+        box-shadow .3s ease;
+    }
+
+    .float-card:hover{
+      box-shadow:
+        0 25px 65px rgba(50,55,100,.18);
+    }
+
+    .float-one{
+      left:-22px;
+      top:95px;
+    }
+
+    .float-two{
+      right:-25px;
+      top:245px;
+
+      animation-delay:1.4s;
+    }
+
+    .float-three{
+      left:-5px;
+      bottom:20px;
+
+      animation-delay:2.8s;
+    }
+
+    @keyframes floatCard{
+
+      0%,100%{
+        transform:translateY(0);
+      }
+
+      50%{
+        transform:translateY(-10px);
+      }
+
+    }
+
+    .float-number{
+      font-family:"Manrope",sans-serif;
+
+      font-size:25px;
+
+      line-height:1;
+
+      font-weight:800;
+
+      background:var(--gradient);
+
+      -webkit-background-clip:text;
+      background-clip:text;
+
+      color:transparent;
+    }
+
+    .float-text{
+      margin-top:6px;
+
+      color:var(--muted);
+
+      font-size:9px;
+
+      line-height:1.4;
+
+      font-weight:800;
+
+      letter-spacing:.3px;
+
+      text-transform:uppercase;
+    }
+
+
+    /* =====================================================
+       MARQUEE
+    ====================================================== */
+
+    .marquee-wrap{
+      overflow:hidden;
+
+      padding:20px 0;
+
+      background:#fff;
+
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+    }
+
+    .marquee{
+      display:flex;
+
+      width:max-content;
+
+      animation:marquee 28s linear infinite;
+    }
+
+    .marquee span{
+      display:flex;
+      align-items:center;
+
+      gap:25px;
+
+      padding-right:25px;
+
+      font-family:"Manrope",sans-serif;
+
+      color:#8c95a5;
+
+      font-size:12px;
+
+      font-weight:800;
+
+      letter-spacing:1px;
+
+      text-transform:uppercase;
+    }
+
+    .marquee span::after{
+      content:"✦";
+
+      color:var(--purple);
+    }
+
+    @keyframes marquee{
+
+      from{
+        transform:translateX(0);
+      }
+
+      to{
+        transform:translateX(-50%);
+      }
+
+    }
+
+
+    /* =====================================================
+       ABOUT
+    ====================================================== */
+
+    .about-grid{
+      display:grid;
+
+      grid-template-columns:.85fr 1.15fr;
+
+      gap:80px;
+
+      align-items:start;
+    }
+
+    .about-copy{
+      color:var(--muted);
+
+      font-size:16px;
+
+      line-height:1.9;
+    }
+
+    .about-copy + .about-copy{
+      margin-top:18px;
+    }
+
+    .about-copy strong{
+      color:var(--text);
+    }
+
+    .stats-grid{
+      display:grid;
+
+      grid-template-columns:repeat(4,1fr);
+
+      gap:15px;
+
+      margin-top:55px;
+    }
+
+    .stat-card{
+      padding:28px 22px;
+
+      background:#fff;
+
+      border:1px solid var(--border);
+
+      border-radius:23px;
+
+      box-shadow:var(--shadow-soft);
+
+      transition:.3s ease;
+    }
+
+    .stat-card:hover{
+      transform:translateY(-7px);
+
+      box-shadow:
+        0 25px 65px rgba(50,55,100,.10);
+    }
+
+    .stat-number{
+      font-family:"Manrope",sans-serif;
+
+      font-size:38px;
+
+      font-weight:800;
+
+      letter-spacing:-2px;
+
+      background:var(--gradient);
+
+      -webkit-background-clip:text;
+      background-clip:text;
+
+      color:transparent;
+    }
+
+    .stat-title{
+      margin-top:7px;
+
+      font-size:13px;
+
+      font-weight:800;
+    }
+
+    .stat-description{
+      margin-top:7px;
+
+      color:var(--muted);
+
+      font-size:11px;
+
+      line-height:1.6;
+    }
+
+
+    /* =====================================================
+       EXPERTISE
+    ====================================================== */
+
+    .expertise{
+      background:#fff;
+    }
+
+    .expertise-grid{
+      display:grid;
+
+      grid-template-columns:repeat(4,1fr);
+
+      gap:16px;
+
+      margin-top:50px;
+    }
+
+    .expertise-card{
+      position:relative;
+
+      min-height:320px;
+
+      padding:28px;
+
+      overflow:hidden;
+
+      background:#fbfcff;
+
+      border:1px solid var(--border);
+
+      border-radius:25px;
+
+      transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+    }
+
+    .expertise-card:hover{
+      transform:translateY(-8px);
+
+      border-color:rgba(102,88,245,.16);
+
+      box-shadow:
+        0 25px 70px rgba(50,55,100,.10);
+    }
+
+    .expertise-number{
+      position:absolute;
+
+      top:15px;
+      right:20px;
+
+      font-family:"Manrope",sans-serif;
+
+      font-size:48px;
+
+      font-weight:800;
+
+      color:#eef0f6;
+    }
+
+    .expertise-icon{
+      width:50px;
+      height:50px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      margin-bottom:25px;
+
+      background:#efeeff;
+
+      color:var(--purple);
+
+      border-radius:15px;
+
+      font-size:20px;
+
+      font-weight:800;
+    }
+
+    .expertise-card h3{
+      font-family:"Manrope",sans-serif;
+
+      font-size:19px;
+
+      letter-spacing:-.6px;
+    }
+
+    .expertise-card p{
+      margin-top:10px;
+
+      color:var(--muted);
+
+      font-size:13px;
+
+      line-height:1.75;
+    }
+
+    .tag-list{
+      display:flex;
+      flex-wrap:wrap;
+
+      gap:6px;
+
+      margin-top:20px;
+    }
+
+    .tag{
+      padding:6px 8px;
+
+      background:#fff;
+
+      border:1px solid var(--border);
+
+      border-radius:7px;
+
+      color:#6d7686;
+
+      font-size:9px;
+
+      font-weight:800;
+    }
+
+
+    /* =====================================================
+       BUSINESS EXPERIENCE
+    ====================================================== */
+
+    .experience-grid{
+      display:grid;
+
+      grid-template-columns:1fr 1fr;
+
+      gap:18px;
+
+      margin-top:50px;
+    }
+
+    .experience-card{
+      padding:35px;
+
+      background:#fff;
+
+      border:1px solid var(--border);
+
+      border-radius:26px;
+
+      box-shadow:var(--shadow-soft);
+
+      transition:.3s ease;
+    }
+
+    .experience-card:hover{
+      transform:translateY(-6px);
+
+      box-shadow:var(--shadow);
+    }
+
+    .experience-top{
+      display:flex;
+      align-items:center;
+
+      justify-content:space-between;
+    }
+
+    .experience-icon{
+      width:52px;
+      height:52px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      border-radius:15px;
+
+      background:#f0efff;
+
+      color:var(--purple);
+
+      font-size:21px;
+    }
+
+    .experience-badge{
+      padding:7px 10px;
+
+      border-radius:999px;
+
+      background:#f3fbf9;
+
+      color:#089d8b;
+
+      font-size:9px;
+
+      font-weight:800;
+
+      text-transform:uppercase;
+
+      letter-spacing:.7px;
+    }
+
+    .experience-card h3{
+      margin-top:25px;
+
+      font-family:"Manrope",sans-serif;
+
+      font-size:23px;
+
+      letter-spacing:-1px;
+    }
+
+    .experience-card p{
+      margin-top:10px;
+
+      color:var(--muted);
+
+      font-size:14px;
+
+      line-height:1.8;
+    }
+
+
+    /* =====================================================
+       JOURNEY
+    ====================================================== */
+
+    .journey{
+      background:#f3f5fa;
+    }
+
+    .journey-heading{
+      text-align:center;
+    }
+
+    .journey-heading .section-subtitle{
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .timeline{
+      position:relative;
+
+      max-width:850px;
+
+      margin:60px auto 0;
+    }
+
+    .timeline::before{
+      content:"";
+
+      position:absolute;
+
+      left:18px;
+
+      top:0;
+      bottom:0;
+
+      width:1px;
+
+      background:
+        linear-gradient(
+          to bottom,
+          var(--purple),
+          rgba(102,88,245,.08)
+        );
+    }
+
+    .timeline-item{
+      position:relative;
+
+      padding-left:62px;
+
+      padding-bottom:48px;
+    }
+
+    .timeline-dot{
+      position:absolute;
+
+      left:8px;
+      top:2px;
+
+      width:21px;
+      height:21px;
+
+      border-radius:50%;
+
+      background:#fff;
+
+      border:5px solid var(--purple);
+
+      box-shadow:
+        0 0 0 6px rgba(102,88,245,.07);
+    }
+
+    .timeline-label{
+      color:var(--purple);
+
+      font-size:10px;
+
+      font-weight:800;
+
+      letter-spacing:1px;
+
+      text-transform:uppercase;
+    }
+
+    .timeline-item h3{
+      margin-top:7px;
+
+      font-family:"Manrope",sans-serif;
+
+      font-size:22px;
+
+      letter-spacing:-.7px;
+    }
+
+    .timeline-item p{
+      margin-top:7px;
+
+      max-width:650px;
+
+      color:var(--muted);
+
+      font-size:14px;
+    }
+
+
+    /* =====================================================
+       BRANDS
+    ====================================================== */
+
+    .brands-grid{
+      display:grid;
+
+      grid-template-columns:repeat(3,1fr);
+
+      gap:18px;
+
+      margin-top:50px;
+    }
+
+    .brand-card{
+      position:relative;
+
+      min-height:380px;
+
+      padding:30px;
+
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+
+      background:#fff;
+
+      border:1px solid var(--border);
+
+      border-radius:27px;
+
+      box-shadow:var(--shadow-soft);
+
+      overflow:hidden;
+
+      transition:.35s ease;
+    }
+
+    .brand-card::before{
+      content:"";
+
+      position:absolute;
+
+      width:180px;
+      height:180px;
+
+      border-radius:50%;
+
+      background:rgba(102,88,245,.06);
+
+      top:-100px;
+      right:-80px;
+    }
+
+    .brand-card:hover{
+      transform:translateY(-8px);
+
+      box-shadow:var(--shadow);
+    }
+
+    .brand-top{
+      position:relative;
+      z-index:2;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:space-between;
+    }
+
+    .brand-status{
+      padding:7px 10px;
+
+      border-radius:999px;
+
+      background:#f1f0ff;
+
+      color:var(--purple);
+
+      font-size:9px;
+
+      font-weight:800;
+
+      letter-spacing:.7px;
+
+      text-transform:uppercase;
+    }
+
+    .brand-number{
+      color:#9aa2b1;
+
+      font-size:11px;
+
+      font-weight:800;
+    }
+
+    .brand-logo{
+      position:relative;
+      z-index:2;
+
+      height:115px;
+
+      margin:30px 0;
+
+      display:flex;
+
+      align-items:center;
+      justify-content:center;
+    }
+
+    .brand-logo img{
+      max-width:190px;
+      max-height:100px;
+
+      object-fit:contain;
+    }
+
+    .logo-placeholder{
+      width:100%;
+      height:100%;
+
+      display:flex;
+
+      align-items:center;
+      justify-content:center;
+
+      text-align:center;
+
+      border:1px dashed #ccd1dc;
+
+      border-radius:18px;
+
+      color:#9aa2b0;
+
+      font-size:10px;
+
+      font-weight:800;
+
+      letter-spacing:.8px;
+
+      line-height:1.6;
+    }
+
+    .brand-card h3{
+      position:relative;
+      z-index:2;
+
+      font-family:"Manrope",sans-serif;
+
+      font-size:22px;
+
+      letter-spacing:-.7px;
+    }
+
+    .brand-card p{
+      position:relative;
+      z-index:2;
+
+      margin-top:8px;
+
+      color:var(--muted);
+
+      font-size:13px;
+
+      line-height:1.7;
+    }
+
+    .brand-link{
+      position:relative;
+      z-index:2;
+
+      margin-top:20px;
+
+      color:var(--purple);
+
+      font-size:11px;
+
+      font-weight:800;
+    }
+
+
+    /* =====================================================
+       CREDENTIALS
+    ====================================================== */
+
+    .credentials{
+      background:#fff;
+    }
+
+    .credentials-grid{
+      display:grid;
+
+      grid-template-columns:repeat(2,1fr);
+
+      gap:18px;
+
+      margin-top:45px;
+    }
+
+    .credential-card{
+      display:flex;
+
+      align-items:center;
+
+      gap:18px;
+
+      padding:28px;
+
+      background:#fafbfe;
+
+      border:1px solid var(--border);
+
+      border-radius:24px;
+    }
+
+    .credential-icon{
+      width:54px;
+      height:54px;
+
+      flex-shrink:0;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      border-radius:15px;
+
+      background:#efeeff;
+
+      color:var(--purple);
+
+      font-size:20px;
+    }
+
+    .credential-card h3{
+      font-family:"Manrope",sans-serif;
+
+      font-size:17px;
+    }
+
+    .credential-card p{
+      margin-top:4px;
+
+      color:var(--muted);
+
+      font-size:12px;
+    }
+
+
+    /* =====================================================
+       CTA
+    ====================================================== */
+
+    .cta-section{
+      padding:100px 0;
+    }
+
+    .cta-box{
+      position:relative;
+
+      overflow:hidden;
+
+      padding:80px 45px;
+
+      border-radius:36px;
+
+      background:
+        linear-gradient(
+          125deg,
+          #111827,
+          #252b47
+        );
+
+      color:#fff;
+
+      text-align:center;
+
+      box-shadow:
+        0 30px 90px rgba(17,24,39,.17);
+    }
+
+    .cta-box::before{
+      content:"";
+
+      position:absolute;
+
+      width:400px;
+      height:400px;
+
+      left:-170px;
+      top:-190px;
+
+      border-radius:50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(102,88,245,.45),
+          transparent 65%
+        );
+    }
+
+    .cta-box::after{
+      content:"";
+
+      position:absolute;
+
+      width:350px;
+      height:350px;
+
+      right:-150px;
+      bottom:-180px;
+
+      border-radius:50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(8,185,164,.25),
+          transparent 65%
+        );
+    }
+
+    .cta-content{
+      position:relative;
+
+      z-index:2;
+    }
+
+    .cta-box h2{
+      font-family:"Manrope",sans-serif;
+
+      font-size:clamp(37px,5vw,62px);
+
+      line-height:1.04;
+
+      letter-spacing:-3px;
+    }
+
+    .cta-box p{
+      max-width:600px;
+
+      margin:20px auto 30px;
+
+      color:#b8c0d0;
+
+      font-size:15px;
+    }
+
+    .cta-box .btn-primary{
+      background:#fff;
+
+      color:var(--text);
+    }
+
+    .cta-box .btn-primary:hover{
+      background:var(--purple);
+
+      color:#fff;
+    }
+
+
+    /* =====================================================
+       CONTACT
+    ====================================================== */
+
+    .contact-grid{
+      display:grid;
+
+      grid-template-columns:1fr 1fr;
+
+      gap:70px;
+
+      align-items:start;
+    }
+
+    .contact-list{
+      display:grid;
+
+      gap:12px;
+
+      margin-top:35px;
+    }
+
+    .contact-item{
+      display:flex;
+
+      align-items:center;
+
+      gap:15px;
+
+      padding:17px;
+
+      background:#fff;
+
+      border:1px solid var(--border);
+
+      border-radius:17px;
+
+      transition:.3s ease;
+    }
+
+    .contact-item:hover{
+      transform:translateX(5px);
+
+      border-color:rgba(102,88,245,.20);
+    }
+
+    .contact-icon{
+      width:44px;
+      height:44px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      flex-shrink:0;
+
+      border-radius:12px;
+
+      background:#efeeff;
+
+      color:var(--purple);
+
+      font-size:15px;
+
+      font-weight:800;
+    }
+
+    .contact-label{
+      color:#939baa;
+
+      font-size:9px;
+
+      font-weight:800;
+
+      letter-spacing:.8px;
+
+      text-transform:uppercase;
+    }
+
+    .contact-value{
+      margin-top:2px;
+
+      font-size:13px;
+
+      font-weight:700;
+
+      word-break:break-word;
+    }
+
+    .contact-note{
+      padding:38px;
+
+      background:#fff;
+
+      border:1px solid var(--border);
+
+      border-radius:26px;
+
+      box-shadow:var(--shadow-soft);
+    }
+
+    .contact-note h3{
+      font-family:"Manrope",sans-serif;
+
+      font-size:28px;
+
+      letter-spacing:-1px;
+    }
+
+    .contact-note p{
+      margin-top:14px;
+
+      color:var(--muted);
+
+      font-size:14px;
+
+      line-height:1.85;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ====================================================== */
+
+    footer{
+      padding:30px 0;
+
+      background:#fff;
+
+      border-top:1px solid var(--border);
+    }
+
+    .footer-inner{
+      display:flex;
+
+      align-items:center;
+
+      justify-content:space-between;
+
+      gap:20px;
+    }
+
+    .footer-logo{
+      font-family:"Manrope",sans-serif;
+
+      font-weight:800;
+    }
+
+    .footer-logo span{
+      color:var(--purple);
+    }
+
+    .footer-text{
+      color:#8d96a5;
+
+      font-size:11px;
+    }
+
+
+    /* =====================================================
+       TABLET
+    ====================================================== */
+
+    @media(max-width:1050px){
+
+      .hero-grid{
+        gap:35px;
+      }
+
+      .hero h1{
+        font-size:65px;
+      }
+
+      .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .expertise-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .brands-grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .hero-photo{
+        width:min(390px,75vw);
+      }
+
+    }
+
+
+    /* =====================================================
+       900px
+    ====================================================== */
+
+    @media(max-width:900px){
+
+      .nav-links{
+        position:absolute;
+
+        top:70px;
+        left:0;
+        right:0;
+
+        display:none;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:3px;
+
+        padding:12px;
+
+        background:rgba(255,255,255,.97);
+
+        backdrop-filter:blur(20px);
+
+        border:1px solid var(--border);
+
+        border-radius:18px;
+
+        box-shadow:
+          0 20px 55px rgba(30,35,80,.10);
+      }
+
+      .nav-links.mobile-open{
+        display:flex !important;
+      }
+
+      .nav-links a{
+        padding:12px;
+      }
+
+      .nav-cta{
+        display:none;
+      }
+
+      .mobile-menu{
+        display:block;
+      }
+
+      .hero{
+        padding-top:135px;
+      }
+
+      .hero-grid{
+        grid-template-columns:1fr;
+
+        gap:55px;
+      }
+
+      .hero-content{
+        text-align:center;
+      }
+
+      .hero-label{
+        margin:auto;
+      }
+
+      .hero-description{
+        margin-left:auto;
+        margin-right:auto;
+      }
+
+      .hero-buttons{
+        justify-content:center;
+      }
+
+      .hero-visual{
+        min-height:650px;
+      }
+
+      .about-grid{
+        grid-template-columns:1fr;
+
+        gap:45px;
+      }
+
+      .expertise-grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .experience-grid{
+        grid-template-columns:1fr;
+      }
+
+      .contact-grid{
+        grid-template-columns:1fr;
+
+        gap:40px;
+      }
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ====================================================== */
+
+    @media(max-width:600px){
+
+      .container{
+        width:calc(100% - 28px);
+      }
+
+      section{
+        padding:80px 0;
+      }
+
+      .navbar{
+        top:10px;
+
+        width:calc(100% - 20px);
+      }
+
+      .hero{
+        padding-top:115px;
+      }
+
+      .hero h1{
+        font-size:49px;
+
+        letter-spacing:-3.5px;
+      }
+
+      .hero-description{
+        font-size:14px;
+      }
+
+      .hero-buttons{
+        flex-direction:column;
+
+        align-items:stretch;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .hero-visual{
+        min-height:530px;
+      }
+
+      .hero-visual::before{
+        width:370px;
+        height:370px;
+      }
+
+      .hero-visual::after{
+        width:340px;
+        height:340px;
+      }
+
+      .hero-orb{
+        width:300px;
+        height:300px;
+      }
+
+      .hero-photo{
+        width:min(340px,82vw);
+
+        aspect-ratio:4 / 5;
+
+        padding:6px;
+
+        border-radius:27px;
+      }
+
+      .hero-photo::before{
+        border-radius:29px;
+      }
+
+      .hero-photo::after{
+        inset:6px;
+
+        border-radius:22px;
+      }
+
+      .hero-photo img{
+        border-radius:21px;
+      }
+
+      .hero-name-plate{
+        bottom:-58px;
+
+        width:calc(100% - 28px);
+
+        padding:14px 10px;
+      }
+
+      .hero-name{
+        font-size:18px;
+
+        letter-spacing:1.8px;
+      }
+
+      .hero-role{
+        font-size:7.5px;
+
+        letter-spacing:.75px;
+      }
+
+      .hero-name-accent{
+        width:32px;
+
+        margin-top:9px;
+      }
+
+      .float-card{
+        min-width:112px;
+
+        padding:11px 12px;
+      }
+
+      .float-one{
+        left:-4px;
+        top:45px;
+      }
+
+      .float-two{
+        right:-4px;
+        top:190px;
+      }
+
+      .float-three{
+        left:0;
+        bottom:0;
+      }
+
+      .float-number{
+        font-size:18px;
+      }
+
+      .float-text{
+        font-size:7.5px;
+      }
+
+      .stats-grid{
+        grid-template-columns:1fr;
+      }
+
+      .expertise-grid{
+        grid-template-columns:1fr;
+      }
+
+      .brands-grid{
+        grid-template-columns:1fr;
+      }
+
+      .credentials-grid{
+        grid-template-columns:1fr;
+      }
+
+      .cta-box{
+        padding:55px 24px;
+      }
+
+      .contact-note{
+        padding:28px;
+      }
+
+      .footer-inner{
+        flex-direction:column;
+
+        text-align:center;
+      }
+
+    }
+
+
+    /* =====================================================
+       REDUCED MOTION
+    ====================================================== */
+
+    @media(prefers-reduced-motion:reduce){
+
+      *,
+      *::before,
+      *::after{
+        scroll-behavior:auto !important;
+
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+
+        transition-duration:.01ms !important;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body class="loading">
+
+  <!-- =====================================================
+       LOADER
+  ====================================================== -->
+
+  <div class="loader" id="loader">
+
+
+<div class="loader-inner">
+
+  <div class="loader-name">
+    Nikhil<span>.</span>
+  </div>
+
+  <div class="loader-line"></div>
+
+</div>
+
+
+  </div>
+
+  <!-- BACKGROUND -->
+
+  <div class="background-orb orb-one"></div>
+  <div class="background-orb orb-two"></div>
+  <div class="background-orb orb-three"></div>
+
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- =====================================================
+       NAVBAR
+  ====================================================== -->
+
+  <header class="navbar" id="navbar">
+
+
+<a href="#home" class="logo">
+  Nikhil <span>.</span>
+</a>
+
+<nav class="nav-links" id="navLinks">
+
+  <a href="#about">About</a>
+  <a href="#expertise">Expertise</a>
+  <a href="#journey">Journey</a>
+  <a href="#brands">Brands</a>
+  <a href="#contact">Contact</a>
+
+</nav>
+
+<a href="#contact" class="nav-cta">
+  Let's Talk
+</a>
+
+<button
+  class="mobile-menu"
+  id="mobileMenu"
+  aria-label="Open navigation"
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+
+  </header>
+
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
+
+  <main>
+
+<!-- ===================================================
+     HERO
+==================================================== -->
+
+<section class="hero" id="home">
+
+  <div class="container">
+
+    <div class="hero-grid">
+
+
+      <!-- HERO CONTENT -->
+
+      <div class="hero-content reveal">
+
+        <div class="hero-label">
+
+          <span class="status-dot"></span>
+
+          DIGITAL • BUSINESS • ECOMMERCE • WEB
+
+        </div>
+
+
+        <h1>
+
+          I BUILD.
+          <br>
+
+          I <span class="gradient">MARKET.</span>
+          <br>
+
+          I <span class="outline">GROW.</span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+          I'm <strong>Nikhil Trivedi</strong> —
+          a Digital Marketer, Front-End Web Developer,
+          Business Growth Strategist and Ecommerce Entrepreneur
+          with a strong business background and hands-on experience
+          across online and offline marketing.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+          <a
+            href="#brands"
+            class="btn btn-primary"
+          >
+            Explore My Brands →
+          </a>
+
+          <a
+            href="#contact"
+            class="btn btn-secondary"
+          >
+            Let's Connect
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           PREMIUM HERO PHOTO
+      ================================================== -->
+
+      <div class="hero-visual reveal">
+
+        <div class="hero-orb"></div>
+
+
+        <div
+          class="hero-photo"
+          id="heroPhoto"
+        >
+
+          <img
+            src="Nikhil-Trivedi.png"
+            alt="Nikhil Trivedi - Digital Marketer, Web Developer and Entrepreneur"
+          />
+
+
+          <!-- NAME UNDER PHOTO -->
+
+          <div class="hero-name-plate">
+
+            <div class="hero-name">
+              NIKHIL TRIVEDI
+            </div>
+
+            
+
+            <div class="hero-name-accent"></div>
+
+          </div>
+
+        </div>
+
+
+        <!-- FLOAT CARD 01 -->
+
+        <div class="float-card float-one">
+
+          <div class="float-number">
+            5+
+          </div>
+
+          <div class="float-text">
+            Years Digital Experience
+          </div>
+
+        </div>
+
+
+        <!-- FLOAT CARD 02 -->
+
+        <div class="float-card float-two">
+
+          <div class="float-number">
+            3+
+          </div>
+
+          <div class="float-text">
+            Years Ecommerce
+          </div>
+
+        </div>
+
+
+        <!-- FLOAT CARD 03 -->
+
+        <div class="float-card float-three">
+
+          <div class="float-number">
+            360°
+          </div>
+
+          <div class="float-text">
+            Business Perspective
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     MARQUEE
+====================================================== -->
+
+<div class="marquee-wrap">
+
+  <div class="marquee">
+
+    <span>Digital Marketing</span>
+    <span>Frontend Development</span>
+    <span>SEO</span>
+    <span>SEM</span>
+    <span>SMO</span>
+    <span>SMM</span>
+    <span>Offline Marketing</span>
+    <span>Brand Building</span>
+    <span>Business Growth</span>
+    <span>Ecommerce</span>
+
+    <span>Digital Marketing</span>
+    <span>Frontend Development</span>
+    <span>SEO</span>
+    <span>SEM</span>
+    <span>SMO</span>
+    <span>SMM</span>
+    <span>Offline Marketing</span>
+    <span>Brand Building</span>
+    <span>Business Growth</span>
+    <span>Ecommerce</span>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     ABOUT
+====================================================== -->
+
+<section id="about">
+
+  <div class="container">
+
+    <div class="about-grid">
+
+      <div class="reveal">
+
+        <span class="section-label">
+          ABOUT NIKHIL
+        </span>
+
+        <h2 class="section-title">
+          Business mind.
+          <br>
+          Digital execution.
+        </h2>
+
+      </div>
+
+
+      <div class="reveal">
+
+        <p class="about-copy">
+
+          My name is <strong>Nikhil Trivedi</strong>.
+          I am a digital marketer and front-end web developer
+          with a strong foundation in business, marketing,
+          sales and entrepreneurship.
+
+        </p>
+
+
+        <p class="about-copy">
+
+          I completed my professional course from
+          <strong>WebGanges Technologies Pvt. Ltd., Mumbai</strong>,
+          where I also completed a <strong>3-year internship</strong>
+          and gained practical experience in the digital field.
+
+        </p>
+
+
+        <p class="about-copy">
+
+          Coming from a family business background has given me
+          practical exposure to wholesale, retail, sales,
+          customer behaviour, business operations and brand building.
+
+        </p>
+
+
+        <p class="about-copy">
+
+          For the last <strong>3 years</strong>, I have also been
+          actively involved in ecommerce entrepreneurship,
+          combining online marketing with offline business strategy.
+
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+      <div class="stat-card reveal">
+
+        <div class="stat-number counter" data-target="5">
+          0+
+        </div>
+
+        <div class="stat-title">
+          Years Digital Experience
+        </div>
+
+        <div class="stat-description">
+          Digital marketing, web and online business.
+        </div>
+
+      </div>
+
+
+      <div class="stat-card reveal">
+
+        <div class="stat-number counter" data-target="3">
+          0+
+        </div>
+
+        <div class="stat-title">
+          Years Ecommerce
+        </div>
+
+        <div class="stat-description">
+          Hands-on ecommerce entrepreneurship.
+        </div>
+
+      </div>
+
+
+      <div class="stat-card reveal">
+
+        <div class="stat-number counter" data-target="3">
+          0+
+        </div>
+
+        <div class="stat-title">
+          Years Internship
+        </div>
+
+        <div class="stat-description">
+          Practical experience at WebGanges Technologies.
+        </div>
+
+      </div>
+
+
+      <div class="stat-card reveal">
+
+        <div class="stat-number">
+          360°
+        </div>
+
+        <div class="stat-title">
+          Business Perspective
+        </div>
+
+        <div class="stat-description">
+          Online + offline business and marketing approach.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     EXPERTISE
+====================================================== -->
+
+<section class="expertise" id="expertise">
+
+  <div class="container">
+
+    <div class="reveal">
+
+      <span class="section-label">
+        EXPERTISE
+      </span>
+
+      <h2 class="section-title">
+        Skills that work
+        <br>
+        together.
+      </h2>
+
+      <p class="section-subtitle">
+        My strength is not limited to one skill.
+        I combine technology, digital marketing,
+        offline marketing, sales and business strategy.
+      </p>
+
+    </div>
+
+
+    <div class="expertise-grid">
+
+      <div class="expertise-card reveal">
+
+        <div class="expertise-number">
+          01
+        </div>
+
+        <div class="expertise-icon">
+          &lt;/&gt;
+        </div>
+
+        <h3>
+          Front-End Development
+        </h3>
+
+        <p>
+          Modern responsive websites and interfaces
+          focused on performance, design and user experience.
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Responsive UI</span>
+        </div>
+
+      </div>
+
+
+      <div class="expertise-card reveal">
+
+        <div class="expertise-number">
+          02
+        </div>
+
+        <div class="expertise-icon">
+          ↗
+        </div>
+
+        <h3>
+          Digital Marketing
+        </h3>
+
+        <p>
+          Building visibility, traffic, customer acquisition
+          and digital growth strategies for businesses.
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">SEO</span>
+          <span class="tag">SEM</span>
+          <span class="tag">SMO</span>
+          <span class="tag">SMM</span>
+        </div>
+
+      </div>
+
+
+      <div class="expertise-card reveal">
+
+        <div class="expertise-number">
+          03
+        </div>
+
+        <div class="expertise-icon">
+          ◇
+        </div>
+
+        <h3>
+          Sales & Marketing
+        </h3>
+
+        <p>
+          Practical experience in offline and online marketing,
+          customer acquisition, sales and market development.
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">Sales</span>
+          <span class="tag">Offline Marketing</span>
+          <span class="tag">Online Marketing</span>
+        </div>
+
+      </div>
+
+
+      <div class="expertise-card reveal">
+
+        <div class="expertise-number">
+          04
+        </div>
+
+        <div class="expertise-icon">
+          ◉
+        </div>
+
+        <h3>
+          Business & Ecommerce
+        </h3>
+
+        <p>
+          Business growth, brand building, ecommerce,
+          product strategy and real-world business execution.
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">Business Growth</span>
+          <span class="tag">Brand Building</span>
+          <span class="tag">Ecommerce</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     BUSINESS EXPERIENCE
+====================================================== -->
+
+<section id="experience">
+
+  <div class="container">
+
+    <div class="reveal">
+
+      <span class="section-label">
+        BUSINESS EXPERIENCE
+      </span>
+
+      <h2 class="section-title">
+        Experience beyond
+        <br>
+        the digital screen.
+      </h2>
+
+      <p class="section-subtitle">
+        My business understanding comes from real-world
+        exposure — not just theory.
+      </p>
+
+    </div>
+
+
+    <div class="experience-grid">
+
+      <div class="experience-card reveal">
+
+        <div class="experience-top">
+
+          <div class="experience-icon">
+            ◈
+          </div>
+
+          <div class="experience-badge">
+            Family Background
+          </div>
+
+        </div>
+
+        <h3>
+          Real Business Understanding
+        </h3>
+
+        <p>
+          Growing up around business gave me practical
+          exposure to customers, sales, purchasing,
+          wholesale, retail, operations and business decisions.
+        </p>
+
+      </div>
+
+
+      <div class="experience-card reveal">
+
+        <div class="experience-top">
+
+          <div class="experience-icon">
+            ↗
+          </div>
+
+          <div class="experience-badge">
+            Marketing
+          </div>
+
+        </div>
+
+        <h3>
+          Online + Offline Marketing
+        </h3>
+
+        <p>
+          I understand how traditional marketing and digital
+          marketing can work together to create stronger
+          customer acquisition and brand growth.
+        </p>
+
+      </div>
+
+
+      <div class="experience-card reveal">
+
+        <div class="experience-top">
+
+          <div class="experience-icon">
+            ◆
+          </div>
+
+          <div class="experience-badge">
+            Brand Building
+          </div>
+
+        </div>
+
+        <h3>
+          From Business to Brand
+        </h3>
+
+        <p>
+          My approach focuses on positioning businesses,
+          creating memorable brands and connecting marketing
+          with sales and customer experience.
+        </p>
+
+      </div>
+
+
+      <div class="experience-card reveal">
+
+        <div class="experience-top">
+
+          <div class="experience-icon">
+            ◎
+          </div>
+
+          <div class="experience-badge">
+            Ecommerce
+          </div>
+
+        </div>
+
+        <h3>
+          3+ Years Ecommerce
+        </h3>
+
+        <p>
+          I currently operate ecommerce businesses and
+          understand the complete journey from products
+          and branding to marketing, sales and growth.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     JOURNEY
+====================================================== -->
+
+<section class="journey" id="journey">
+
+  <div class="container">
+
+    <div class="journey-heading reveal">
+
+      <span class="section-label">
+        MY JOURNEY
+      </span>
+
+      <h2 class="section-title">
+        Learning.
+        Experience.
+        <br>
+        Entrepreneurship.
+      </h2>
+
+      <p class="section-subtitle">
+        A journey from business exposure to digital marketing,
+        technology and ecommerce entrepreneurship.
+      </p>
+
+    </div>
+
+
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-label">
+          Foundation
+        </div>
+
+        <h3>
+          Family Business Background
+        </h3>
+
+        <p>
+          Early exposure to real-world business,
+          wholesale, retail, customers, sales and operations.
+        </p>
+
+      </div>
+
+
+      <div class="timeline-item reveal">
+
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-label">
+          Professional Learning
+        </div>
+
+        <h3>
+          WebGanges Technologies Pvt. Ltd. — Mumbai
+        </h3>
+
+        <p>
+          Completed professional training in the digital field
+          and developed practical knowledge of web development
+          and digital marketing.
+        </p>
+
+      </div>
+
+
+      <div class="timeline-item reveal">
+
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-label">
+          3-Year Internship
+        </div>
+
+        <h3>
+          Practical Digital Experience
+        </h3>
+
+        <p>
+          Completed a 3-year internship at WebGanges Technologies,
+          gaining practical exposure to digital projects,
+          marketing and technology.
+        </p>
+
+      </div>
+
+
+      <div class="timeline-item reveal">
+
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-label">
+          Digital Career
+        </div>
+
+        <h3>
+          Digital Marketing & Web Development
+        </h3>
+
+        <p>
+          Built expertise across HTML, CSS, JavaScript,
+          SEO, SEM, SMO, SMM and digital business.
+        </p>
+
+      </div>
+
+
+      <div class="timeline-item reveal">
+
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-label">
+          Entrepreneurship
+        </div>
+
+        <h3>
+          3+ Years Ecommerce Business
+        </h3>
+
+        <p>
+          Started and developed ecommerce ventures while
+          applying digital marketing, branding, sales and
+          business growth experience.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     BRANDS
+====================================================== -->
+
+<section id="brands">
+
+  <div class="container">
+
+    <div class="reveal">
+
+      <span class="section-label">
+        MY BRANDS
+      </span>
+
+      <h2 class="section-title">
+        Businesses I am
+        <br>
+        building.
+      </h2>
+
+      <p class="section-subtitle">
+        My entrepreneurial journey currently includes two
+        running brands and one upcoming venture.
+      </p>
+
+    </div>
+
+
+    <div class="brands-grid">
+
+
+      <div class="brand-card reveal">
+
+        <div>
+
+          <div class="brand-top">
+
+            <span class="brand-status">
+              Running Brand
+            </span>
+
+            <span class="brand-number">
+              01
+            </span>
+
+          </div>
+
+
+          <div class="brand-logo">
+
+            <img
+            src="Swayam-Traders.png"
+            alt="Swayam-Traders"
+          />
+
+          </div>
+
+
+          <h3>
+            SWAYAM TRADERS™
+          </h3>
+
+          <p>
+            Home improvement and gardening products,
+            including green shade net, artificial grass
+            and related solutions.
+          </p>
+
+        </div>
+
+
+        <div class="brand-link">
+          Home Improvement • Gardening
+        </div>
+
+      </div>
+
+
+      <div class="brand-card reveal">
+
+        <div>
+
+          <div class="brand-top">
+
+            <span class="brand-status">
+              Running Brand
+            </span>
+
+            <span class="brand-number">
+              02
+            </span>
+
+          </div>
+
+
+          <div class="brand-logo">
+
+            <img
+            src="ShubhLabh-Jewels.png"
+            alt="ShubhLabh Jewels"
+          />
+
+          </div>
+
+
+          <h3>
+            ShubhLabh Jewels
+          </h3>
+
+          <p>
+            A jewellery brand focused on imitation jewellery
+            and modern jewellery collections.
+          </p>
+
+        </div>
+
+
+        <div class="brand-link">
+          Fashion • Jewellery • Lifestyle
+        </div>
+
+      </div>
+
+
+      <div class="brand-card reveal">
+
+        <div>
+
+          <div class="brand-top">
+
+            <span class="brand-status">
+              Under Processing
+            </span>
+
+            <span class="brand-number">
+              03
+            </span>
+
+          </div>
+
+
+          <div class="brand-logo">
+
+            <div class="logo-placeholder">
+
+              <strong>
+                COMING SOON
+              </strong>
+
+              <br>
+
+              NEW BRAND
+              <br>
+              LAUNCHING SOON
+
+            </div>
+
+          </div>
+
+
+          <h3>
+            Coming Soon
+          </h3>
+
+          <p>
+            A new venture is currently under development
+            and will be launched soon.
+          </p>
+
+        </div>
+
+
+        <div class="brand-link">
+          Something New Is Coming →
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     SKILLS
+====================================================== -->
+
+<section class="credentials" id="skills">
+
+  <div class="container">
+
+    <div class="reveal">
+
+      <span class="section-label">
+        TECH & MARKETING SKILLS
+      </span>
+
+      <h2 class="section-title">
+        The tools behind
+        <br>
+        the work.
+      </h2>
+
+    </div>
+
+
+    <div class="credentials-grid">
+
+
+      <div class="credential-card reveal">
+
+        <div class="credential-icon">
+          &lt;/&gt;
+        </div>
+
+        <div>
+
+          <h3>
+            HTML • CSS • JavaScript
+          </h3>
+
+          <p>
+            Front-end web development and responsive UI.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="credential-card reveal">
+
+        <div class="credential-icon">
+          SEO
+        </div>
+
+        <div>
+
+          <h3>
+            SEO • SEM
+          </h3>
+
+          <p>
+            Search visibility, organic growth and paid marketing.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="credential-card reveal">
+
+        <div class="credential-icon">
+          SM
+        </div>
+
+        <div>
+
+          <h3>
+            SMO • SMM
+          </h3>
+
+          <p>
+            Social media optimisation and social media marketing.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="credential-card reveal">
+
+        <div class="credential-icon">
+          DM
+        </div>
+
+        <div>
+
+          <h3>
+            Online + Offline Marketing
+          </h3>
+
+          <p>
+            Integrated marketing and business growth strategy.
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     CTA
+====================================================== -->
+
+<section class="cta-section">
+
+  <div class="container">
+
+    <div class="cta-box reveal">
+
+      <div class="cta-content">
+
+        <h2>
+          Got a business?
+          <br>
+          Let's build a brand.
+        </h2>
+
+        <p>
+          Business strategy, digital marketing, web development,
+          ecommerce, sales and brand building — all connected
+          through one growth-focused approach.
+        </p>
+
+        <a
+          href="#contact"
+          class="btn btn-primary"
+        >
+          Let's Talk →
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT
+====================================================== -->
+
+<section id="contact">
+
+  <div class="container">
+
+    <div class="contact-grid">
+
+
+      <div class="reveal">
+
+        <span class="section-label">
+          CONTACT
+        </span>
+
+        <h2 class="section-title">
+          Let's build
+          <br>
+          something valuable.
+        </h2>
+
+        <p class="section-subtitle">
+          Have a business idea, brand project, website,
+          marketing requirement or ecommerce opportunity?
+          Let's connect.
+        </p>
+
+
+        <div class="contact-list">
+
+
+          <a
+            href="https://forms.gle/Ui4unvnaYiaCxAbU9"
+            class="contact-item"
+          >
+
+            <div class="contact-icon">
+             <i class="fa-solid fa-envelope"></i>
+            </div>
+
+            <div>
+
+              <div class="contact-label">
+                Contact us
+              </div>
+
+              <div class="contact-value">
+                  Fill out our form
+              </div>
+
+            </div>
+
+          </a>
+
+
+          <a
+            href="https://www.linkedin.com/in/nikhil-trivedi-76990a10b/"
+            class="contact-item"
+          >
+
+            <div class="contact-icon">
+             <i class="fa-brands fa-linkedin"></i>
+            </div>
+
+            <div>
+
+              <div class="contact-label">
+                LinkedIn
+              </div>
+
+              <div class="contact-value">
+                LINKEDIN
+              </div>
+
+            </div>
+
+          </a>
+
+
+          <a
+            href="https://www.instagram.com/_nikhil_trivedi_/"
+            class="contact-item"
+          >
+
+            <div class="contact-icon">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+
+            <div>
+
+              <div class="contact-label">
+                instagram
+              </div>
+
+              <div class="contact-value">
+                INSTAGRAM
+              </div>
+
+            </div>
+
+          </a>
+
+
+        </div>
+
+      </div>
+
+
+      <div class="contact-note reveal">
+
+        <h3>
+          More than a marketer.
+        </h3>
+
+        <p>
+          I bring together business understanding,
+          digital marketing, front-end development,
+          ecommerce and sales experience.
+        </p>
+
+        <p>
+          My objective is to build brands and digital
+          systems that look professional, communicate
+          clearly and create real business value.
+        </p>
+
+        <p>
+          From the first idea to marketing, customers,
+          sales and growth — I understand the complete picture.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+  </main>
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer>
+
+
+<div class="container">
+
+  <div class="footer-inner">
+
+    <div class="footer-logo">
+      Nikhil Trivedi<span>.</span>
+    </div>
+
+    <div class="footer-text">
+
+      ©
+      <span id="year"></span>
+      Nikhil Trivedi.
+      All rights reserved.
+
+    </div>
+
+  </div>
+
+</div>
+
+
+  </footer>
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script>
+
+
+    /* =====================================================
+       PAGE LOADER
+    ====================================================== */
+
+    window.addEventListener("load",function(){
+
+      const loader =
+        document.getElementById("loader");
+
+      setTimeout(function(){
+
+        loader.classList.add("hide");
+
+        document.body.classList.remove("loading");
+
+      },700);
+
+    });
+
+
+    /* =====================================================
+       YEAR
+    ====================================================== */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    /* =====================================================
+       SCROLL PROGRESS
+    ====================================================== */
+
+    const scrollProgress =
+      document.getElementById("scrollProgress");
+
+    const navbar =
+      document.getElementById("navbar");
+
+    function updateScroll(){
+
+      const scrollTop =
+        window.scrollY;
+
+      const documentHeight =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+      const progress =
+        documentHeight > 0
+          ? (scrollTop / documentHeight) * 100
+          : 0;
+
+      scrollProgress.style.width =
+        progress + "%";
+
+
+      if(scrollTop > 20){
+
+        navbar.classList.add("scrolled");
+
+      }else{
+
+        navbar.classList.remove("scrolled");
+
+      }
+
+    }
+
+    window.addEventListener(
+      "scroll",
+      updateScroll,
+      {passive:true}
+    );
+
+    updateScroll();
+
+
+    /* =====================================================
+       CURSOR GLOW
+    ====================================================== */
+
+    const cursorGlow =
+      document.getElementById("cursorGlow");
+
+    document.addEventListener(
+      "mousemove",
+      function(event){
+
+        cursorGlow.style.left =
+          event.clientX + "px";
+
+        cursorGlow.style.top =
+          event.clientY + "px";
+
+      }
+    );
+
+
+    /* =====================================================
+       HERO PHOTO 3D TILT
+    ====================================================== */
+
+    const heroPhoto =
+      document.getElementById("heroPhoto");
+
+    if(heroPhoto){
+
+      heroPhoto.addEventListener(
+        "mousemove",
+        function(event){
+
+          if(window.innerWidth < 900){
+            return;
+          }
+
+          const rect =
+            heroPhoto.getBoundingClientRect();
+
+          const x =
+            event.clientX - rect.left;
+
+          const y =
+            event.clientY - rect.top;
+
+          const centerX =
+            rect.width / 2;
+
+          const centerY =
+            rect.height / 2;
+
+          const rotateX =
+            ((y - centerY) / centerY) * -4;
+
+          const rotateY =
+            ((x - centerX) / centerX) * 4;
+
+          heroPhoto.style.transform =
+            `
+              perspective(900px)
+              rotateX(${rotateX}deg)
+              rotateY(${rotateY}deg)
+              translateY(-5px)
+            `;
+
+        }
+      );
+
+
+      heroPhoto.addEventListener(
+        "mouseleave",
+        function(){
+
+          heroPhoto.style.transform =
+            `
+              perspective(900px)
+              rotateX(0deg)
+              rotateY(0deg)
+              translateY(0)
+            `;
+
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       REVEAL
+    ====================================================== */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const revealObserver =
+      new IntersectionObserver(
+        function(entries){
+
+          entries.forEach(function(entry){
+
+            if(entry.isIntersecting){
+
+              entry.target.classList.add("visible");
+
+              revealObserver.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold:.12
+        }
+      );
+
+
+    revealElements.forEach(function(element){
+
+      revealObserver.observe(element);
+
+    });
+
+
+    /* =====================================================
+       COUNTERS
+    ====================================================== */
+
+    const counters =
+      document.querySelectorAll(".counter");
+
+    const counterObserver =
+      new IntersectionObserver(
+        function(entries){
+
+          entries.forEach(function(entry){
+
+            if(!entry.isIntersecting){
+              return;
+            }
+
+            const counter =
+              entry.target;
+
+            const target =
+              Number(counter.dataset.target);
+
+            const duration =
+              1200;
+
+            const start =
+              performance.now();
+
+            function animate(time){
+
+              const elapsed =
+                time - start;
+
+              const progress =
+                Math.min(
+                  elapsed / duration,
+                  1
+                );
+
+              const eased =
+                1 -
+                Math.pow(
+                  1 - progress,
+                  3
+                );
+
+              const value =
+                Math.floor(
+                  eased * target
+                );
+
+              counter.textContent =
+                value + "+";
+
+
+              if(progress < 1){
+
+                requestAnimationFrame(
+                  animate
+                );
+
+              }else{
+
+                counter.textContent =
+                  target + "+";
+
+              }
+
+            }
+
+            requestAnimationFrame(
+              animate
+            );
+
+            counterObserver.unobserve(
+              counter
+            );
+
+          });
+
+        },
+        {
+          threshold:.6
+        }
+      );
+
+
+    counters.forEach(function(counter){
+
+      counterObserver.observe(counter);
+
+    });
+
+
+    /* =====================================================
+       MOBILE MENU
+    ====================================================== */
+
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+    const navLinks =
+      document.getElementById("navLinks");
+
+    mobileMenu.addEventListener(
+      "click",
+      function(){
+
+        navLinks.classList.toggle(
+          "mobile-open"
+        );
+
+      }
+    );
+
+
+    document
+      .querySelectorAll(".nav-links a")
+      .forEach(function(link){
+
+        link.addEventListener(
+          "click",
+          function(){
+
+            navLinks.classList.remove(
+              "mobile-open"
+            );
+
+          }
+        );
+
+      });
+
+
+    /* =====================================================
+       MAGNETIC BUTTONS
+    ====================================================== */
+
+    document
+      .querySelectorAll(".btn,.nav-cta")
+      .forEach(function(button){
+
+        button.addEventListener(
+          "mousemove",
+          function(event){
+
+            if(window.innerWidth < 900){
+              return;
+            }
+
+            const rect =
+              button.getBoundingClientRect();
+
+            const x =
+              event.clientX -
+              rect.left -
+              rect.width / 2;
+
+            const y =
+              event.clientY -
+              rect.top -
+              rect.height / 2;
+
+            button.style.transform =
+              `
+                translate(
+                  ${x * .10}px,
+                  ${y * .10}px
+                )
+              `;
+
+          }
+        );
+
+
+        button.addEventListener(
+          "mouseleave",
+          function(){
+
+            button.style.transform =
+              "";
+
+          }
+        );
+
+      });
+
+
+    /* =====================================================
+       CARD TILT
+    ====================================================== */
+
+    document
+      .querySelectorAll(
+        ".expertise-card,.experience-card,.brand-card"
+      )
+      .forEach(function(card){
+
+        card.addEventListener(
+          "mousemove",
+          function(event){
+
+            if(window.innerWidth < 900){
+              return;
+            }
+
+            const rect =
+              card.getBoundingClientRect();
+
+            const x =
+              event.clientX - rect.left;
+
+            const y =
+              event.clientY - rect.top;
+
+            const centerX =
+              rect.width / 2;
+
+            const centerY =
+              rect.height / 2;
+
+            const rotateX =
+              ((y - centerY) / centerY) * -2;
+
+            const rotateY =
+              ((x - centerX) / centerX) * 2;
+
+            card.style.transform =
+              `
+                perspective(900px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateY(-7px)
+              `;
+
+          }
+        );
+
+
+        card.addEventListener(
+          "mouseleave",
+          function(){
+
+            card.style.transform =
+              "";
+
+          }
+        );
+
+      });
+
+
+  </script>
+
+</body>
+</html>
